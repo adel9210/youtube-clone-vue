@@ -1,0 +1,38 @@
+.header {
+  padding: 15px 0;
+  box-shadow: 1px 5px 9px rgba(204, 204, 204, .26);   
+  position: fixed;
+  width: 100%;
+  background-color: #fff;
+  
+  &__container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__form {
+    flex: 3;
+
+    display: flex;
+
+    &__search-input {
+      border-radius: 0;
+    }
+
+    &__search-button {
+      outline: 0;
+      border: 1px solid #ced4da;
+      padding: 8px 30px;
+      color: #ad9999;
+    }
+  }
+
+  &__logo {
+    flex: 1;
+
+    &__image {
+      height: 50px;
+    }
+  }
+}

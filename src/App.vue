@@ -1,30 +1,62 @@
+
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+  <Header />
+  <div class="main">
+    <router-view />
+    <Spinner v-if="isFetching" />
+    <button v-if="!isFetching" class="load-more-button" @click="loadMore()">
+      Show more items
+    </button>
   </div>
-  <router-view />
 </template>
+
+<script>
+/* eslint-disable */
+
+import Header from "./components/Header/Header.vue";
+import Spinner from "./components/Spinner/Spinner.vue";
+
+export default {
+  components: { Header, Spinner },
+  methods: {
+    loadMore: function () {
+      this.$store.dispatch("getVideos", {
+        isPaging: true,
+        channelId: this.$store.state.channelId,
+      });
+    },
+  },
+  computed: {
+    isFetching: function () {
+      return this.$store.state.isFetching;
+    },
+  },
+};
+</script>
+
 
 <style lang="scss">
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
 }
 
-#nav {
-  padding: 30px;
+.main {
+  padding-top: 100px;
+}
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
+.load-more-button {
+  width: 100%;
+  padding: 10px;
+  background-color: #efefef;
+  font-size: 1.2rem;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  width: 80%;
+  margin: 0 auto;
+  margin-bottom: 20px;
+  display: block;
 }
 </style>

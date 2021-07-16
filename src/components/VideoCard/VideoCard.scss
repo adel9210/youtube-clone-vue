@@ -1,0 +1,61 @@
+.video-card {
+  display: flex;
+  // align-items: center;
+  margin-bottom: 20px;
+
+  &__image {
+    margin-right: 10px;
+  }
+  &__info {
+    &__title {
+      font-size: 1.4rem;
+      color: #000;
+      text-decoration: none;
+      &:hover {
+        color: #000;
+      }
+    }
+
+    &__video {
+      font-size: .8rem;
+      color: #373738;
+
+      &__channel-name {
+        cursor: pointer;
+      }
+
+      &__views {
+        margin: 0 10px;
+      }
+
+      &__posted {
+      }
+    }
+
+    &__description {
+      font-size: 1rem;
+      color: #373738;
+    }
+  }
+
+  @media screen and(max-width: 768px){
+    &__image {
+      width: 150px;
+      height: 100px;
+    }
+
+    &__info {
+      &__title {
+        font-size: .8rem;
+      }
+
+      &__video {
+        font-size: .7rem;
+      }
+
+      &__description {
+        display: none;
+      }
+    }
+  }
+}
