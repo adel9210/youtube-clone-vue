@@ -1,7 +1,7 @@
 <template>
   <div class="video-card">
     <img
-      @click="redirect(`https://www.youtube.com/watch?v=${video.id}`)"
+      @click="goTo('watch', { videoId: video.id })"
       class="video-card__image"
       v-bind:src="video.snippet.thumbnails.medium.url"
       alt="Video"
@@ -9,14 +9,12 @@
     <div class="video-card__info">
       <a
         class="video-card__info__title"
-        @click="
-          redirect(`https://www.youtube.com/watch?v=${video.id}`)
-        "
+        @click="goTo('watch', { videoId: video.id })"
         >{{ video.snippet.title }}</a
       >
       <h3 class="video-card__info__video">
         <span
-          @click="goTo(video.snippet.channelId)"
+          @click="goTo('channel', { channelId: video.snippet.channelId })"
           class="video-card__info__video__channel-name"
           ><b>{{ video.snippet.channelTitle }} </b></span
         >
@@ -30,9 +28,7 @@
       <p
         v-bind:title="video.snippet.description"
         class="video-card__info__description"
-        @click="
-          redirect(`https://www.youtube.com/watch?v=${video.id}`)
-        "
+        @click="goTo('watch', { videoId: video.id })"
       >
         {{ video.snippet.description.slice(0, 150) + "..." }}
       </p>
@@ -46,8 +42,8 @@ export default {
     video: Object,
   },
   methods: {
-    goTo: function (id) {
-      this.$router.push({ name: "channel", params: { channelId: id } });
+    goTo: function (name, params) {
+      this.$router.push({ name, params: params });
     },
     redirect: function (url) {
       window.open(url);
@@ -61,7 +57,7 @@ export default {
         return Math.floor(number / 1000000).toFixed(0) + " M";
       }
     },
-  },
+  }
 };
 </script>
 

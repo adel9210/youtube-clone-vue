@@ -1,6 +1,7 @@
 import { createRouter, createWebHashHistory } from "vue-router";
 import Result from "../views/Results.vue";
 import Channel from "../views/Channel.vue";
+import Watch from "../views/Watch.vue";
 
 const routes = [
   {
@@ -12,6 +13,11 @@ const routes = [
     path: "/channel/:channelId",
     name: "channel",
     component: Channel,
+  },
+  {
+    path: "/watch/:videoId",
+    name: "watch",
+    component: Watch,
   },
 ];
 

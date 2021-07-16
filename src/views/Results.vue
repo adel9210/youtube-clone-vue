@@ -27,8 +27,11 @@ export default {
     };
   },
   mounted() {
-    this.$store.commit('setChannelId', '');
-    this.$store.dispatch("getVideos", { isPaging: false });
+    this.$store.commit("setChannelId", "");
+    this.$store.dispatch("getVideos", {
+      isPaging: false,
+      currentRoute: this.$route,
+    });
   },
   computed: {
     videosItems: function () {

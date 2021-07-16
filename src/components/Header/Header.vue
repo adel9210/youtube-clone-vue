@@ -37,7 +37,10 @@ export default {
       e.preventDefault();
       this.$router.push({ name: "Result" });
 
-      this.$store.dispatch("getVideos", true);
+      this.$store.dispatch("getVideos", {
+        isPaging: false,
+        currentRoute: this.$route,
+      });
     },
     updateSearchTerm(e) {
       this.$store.commit("updateSearchTerm", e.target.value);

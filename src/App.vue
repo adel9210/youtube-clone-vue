@@ -22,7 +22,7 @@ export default {
     loadMore: function () {
       this.$store.dispatch("getVideos", {
         isPaging: true,
-        channelId: this.$store.state.channelId,
+        currentRoute: this.$route
       });
     },
   },

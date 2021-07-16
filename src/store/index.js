@@ -1,5 +1,5 @@
 import { createStore } from "vuex";
-import * as http from "../services/auth";
+import * as http from "../services/http";
 
 export default createStore({
   state: {
@@ -8,7 +8,9 @@ export default createStore({
     isFetching: false,
     searchTerm: "spongebob",
     pageToken: "",
-    channelId: ""
+    channelId: "",
+    videoId: "",
+    searchType: ''
   },
   mutations: {
     setVideosIds: function (state, payload) {
@@ -25,19 +27,23 @@ export default createStore({
     updateSearchTerm: function (state, payload) {
       state.searchTerm = payload;
     },
-    setChannelId(state, payload){
+    setChannelId(state, payload) {
       state.channelId = payload
+    },
+    setCurrentVideoId(){
+
     }
   },
   actions: {
-    getVideos: function (context, { isPaging}) {
+    getVideos: function (context, { isPaging, currentRoute }) {
       context.state.isFetching = true;
+      console.log(context)
 
       http
         .getVideosIds(
           context.state.searchTerm,
           context.state.pageToken,
-          context.state.channelId
+         currentRoute
         )
         .then((res) => {
           const ids = res.data.items.map((video) => video.id.videoId);

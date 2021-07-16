@@ -8,7 +8,7 @@
 import VideoList from "../components/VideoList/VideoList.vue";
 export default {
   components: {
-    VideoList
+    VideoList,
   },
   data() {
     return {
@@ -25,11 +25,11 @@ export default {
   },
   mounted() {
     this.channelId = this.$route.params.channelId;
-    this.$store.commit('setChannelId', this.channelId);
+    this.$store.commit("setChannelId", this.channelId);
 
     this.$store.dispatch("getVideos", {
       isPaging: false,
-      channelId: this.channelId,
+      currentRoute: this.$route,
     });
   },
 };
